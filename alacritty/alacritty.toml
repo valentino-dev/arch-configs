@@ -1,0 +1,21 @@
+[font]
+size = 12
+
+[font.bold]
+family = "iosevka"
+style = "Bold"
+
+[font.bold_italic]
+family = "iosevka"
+style = "Bold Italic"
+
+[font.italic]
+family = "iosevka"
+style = "Italic"
+
+[font.normal]
+family = "iosevka"
+style = "Regular"
+
+[window]
+opacity = 0.45
