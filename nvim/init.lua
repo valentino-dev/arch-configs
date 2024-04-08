@@ -10,9 +10,8 @@ if not vim.loop.fs_stat(lazypath) then
   })
 end
 vim.opt.rtp:prepend(lazypath)
-vim.g.mapleader = " "
 
+require("configs")
 require("lazy").setup("plugins")
 
-require("configs.keymaps")
 vim.cmd[[colorscheme tokyonight]]
