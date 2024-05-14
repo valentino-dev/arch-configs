@@ -1,20 +1,20 @@
 [font]
-size = 12
+size = 9
 
 [font.bold]
-family = "iosevka"
+family = "Iosevka"
 style = "Bold"
 
 [font.bold_italic]
-family = "iosevka"
+family = "Iosevka"
 style = "Bold Italic"
 
 [font.italic]
-family = "iosevka"
+family = "Iosevka"
 style = "Italic"
 
 [font.normal]
-family = "iosevka"
+family = "Iosevka"
 style = "Regular"
 
 [window]
