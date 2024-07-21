@@ -214,6 +214,8 @@ default_border pixel 1
 default_floating_border pixel 1
 client.focused          #4c7899 #285577 #505050 #8080a0 #8080a0 #8080a0
 
-bindsym $mod+x exec "firefox"
+bindsym $mod+x exec "min-browser"
 bindsym $mod+p exec "write_stylus"
+bindsym $mod+z exec "zathura"
+bindsym $mod+o exec alacritty -e btop
 
