@@ -190,7 +190,9 @@ bindsym $mod+r mode "resize"
 #}
 
 # exec "setxkbmap -layout de"
-exec --no-startup-id xrandr --output "DP-0" --pos 960x0 --output "DVI-D-0" --pos 0x2160 --output "DP-2" --pos 1920x2160 --output "HDMI-1" --pos 3840x2160 --output "DP-0" --rotate "inverted" --scale 1
+#exec --no-startup-id xrandr --output "DP-0" --pos 1280x0 --output "DVI-D-0" --pos 0x0 --output "DP-2" --pos 1920x2160 --output "HDMI-1" --pos 3840x2160 --output "DP-0" --rotate "inverted" --scale 1
+exec --no-startup-id xrandr --output "DVI-D-0" --pos 0x0 --output "DP-2" --pos 1920x0 --output "HDMI-0" --pos 3840x0 --output "DP-0" --pos 960x-2160 --rotate "inverted"
+#exec --no-startup-id xrandr --output "DP-0" --pos 960x0 --output "DVI-D-0" --pos 0x2160 --output "DP-2" --pos 1920x2160 --output "HDMI-1" --pos 3840x2160 --output "DP-0" --rotate "inverted" --scale 1 --output "HDMI-0" --mode 1024x768
 exec --no-startup-id feh --bg-fill ~/Pictures/alien_frame_6.png feh --bg-fill ~/Pictures/alien_frame_11.png --bg-fill ~/Pictures/alien_frame_10.png --bg-fill ~/Pictures/alien_frame_9.png
 exec --no-startup-id picom -CGb
 workspace 1 output DVI-D-0
@@ -203,5 +205,6 @@ default_border pixel 1
 default_floating_border pixel 1
 client.focused          #4c7899 #285577 #ffffff #314539 #314539
 
-bindsym $mod+x exec "firefox"
+bindsym $mod+x exec "chromium"
+bindsym $mod+o exec alacritty -e btop
 

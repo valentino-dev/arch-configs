@@ -1,0 +1,26 @@
+
+window:
+  opacity: 0.45
+
+
+font:
+  normal:
+    family: iosevka
+    style: Regular
+
+  bold:
+    family: iosevka
+    style: Bold
+
+  italic:
+    family: iosevka
+    style: Italic
+
+  bold_italic:
+    family: iosevka
+    style: Bold Italic
+
+  size: 12
+
+#import:
+# - ~/.config/alacritty/themes/themes/city_lights.yaml
