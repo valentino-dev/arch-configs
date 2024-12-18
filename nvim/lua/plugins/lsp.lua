@@ -1,57 +1,74 @@
 return {
-	{
-		"williamboman/mason.nvim",
-		config = function()
-			require("mason").setup()
-		end,
-	},
-	{
-		"williamboman/mason-lspconfig.nvim",
-		config = function()
-			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "clangd", "pyright" },
-			})
-		end,
-	},
-	{
-		"neovim/nvim-lspconfig",
-		config = function()
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+  {
+    'williamboman/mason.nvim', -- language installation
+    config = function()
+      require('mason').setup()
+    end
+  },
+  {
+    'williamboman/mason-lspconfig.nvim', -- mason bridge to lspconfig
+    config = function()
+      require('mason-lspconfig').setup({
+        ensure_installed = { 'lua_ls', 'clangd', 'pyright', 'texlab' }
+      })
+    end
+  },
+  {
+    'neovim/nvim-lspconfig', -- conifguring lsp with installed language
+    config = function()
+      local lspconfig = require('lspconfig')
+      lspconfig.lua_ls.setup({})
+      lspconfig.clangd.setup({})
+      lspconfig.pyright.setup({})
+      lspconfig.texlab.setup({})
+      lspconfig.ast_grep.setup({})
+      --lspconfig.clang_format.setup({})
+    end,
+  },
+  {
+    'hrsh7th/cmp-nvim-lsp', -- cmp bridge to lsp
+    config = function()
+    end
+  },
+  {
+    'hrsh7th/nvim-cmp', -- cmp (auto complition)
+    config = function()
+      local cmp = require('cmp')
+      local types = require('cmp.types')
+      cmp.setup({
+        mapping = cmp.mapping.preset.insert({
+          ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+          ["<C-f>"] = cmp.mapping.scroll_docs(4),
+          ["<C-Tab>"] = cmp.mapping.complete(),
+          ["<C-e>"] = cmp.mapping.abort(),
+          ["<Tab>"] = cmp.mapping.confirm({ select = true }),
 
-			local lspconfig = require("lspconfig")
-			lspconfig.lua_ls.setup({
-        capabilities = capabilities
+          ["<C-j>"] = {
+            i = function()
+              if cmp.visible() then
+                cmp.select_next_item({ behavior = types.cmp.SelectBehavior.Insert })
+              else
+                cmp.complete()
+              end
+            end,
+          },
+          ["<C-k>"] = {
+            i = function()
+              if cmp.visible() then
+                cmp.select_prev_item({ behavior = types.cmp.SelectBehavior.Insert })
+              else
+                cmp.complete()
+              end
+            end,
+          },
+        }),
+        sources = cmp.config.sources({
+          { name = 'nvim_lsp' },
+          { name = 'buffer' },
+          { name = 'path' },
+        })
       })
-			lspconfig.clangd.setup({
-        capabilities = capabilities
-      })
-			lspconfig.pyright.setup({
-        capabilities = capabilities
-      })
-			lspconfig.texlab.setup({
-        capabilities = capabilities
-      })
-			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-			vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {})
-			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
-			vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, {})
-		end,
-	},
-	{
-		"nvimtools/none-ls.nvim",
-		config = function()
-			local null_ls = require("null-ls")
-			null_ls.setup({
-				sources = {
-					null_ls.builtins.formatting.stylua,
-					null_ls.builtins.formatting.clang_format,
-					--null_ls.builtins.diagnostics.cpplint,
-					null_ls.builtins.formatting.black,
-					null_ls.builtins.formatting.latexindent,
-				},
-			})
+    end
+  },
 
-			vim.keymap.set("n", "<leader>fm", vim.lsp.buf.format, {})
-		end,
-	},
 }
